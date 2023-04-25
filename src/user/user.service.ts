@@ -149,6 +149,8 @@ export class UserService  {
         return user;
     }
     public generateUserJwtToken(user: User): string {
+        console.log(`${process.env.JWT_SECRET}`)
+        console.log(`${process.env.JWT_EXPIRES}`)
         return this.jwtService.sign({ sub: user.id, cometToken: user.cometToken });
     }
 }

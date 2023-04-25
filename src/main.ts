@@ -33,7 +33,6 @@ async function bootstrap() {
     `🚀 Application is running on:
      \n http://localhost:${port}/${globalPrefix}
      \n🚀 Docs http://localhost:${port}/docs
-     \n Kafka UI http://localhost:8080
     `
   );
    

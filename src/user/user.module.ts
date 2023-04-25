@@ -15,6 +15,9 @@ import { AppConfigModule, AppConfigService } from 'src/lib/config';
         secret: configService.jwtSecret,
         signOptions: {
           expiresIn: configService.jwtExpires,
+          audience: 'https://uzeyrozcan.pw',
+          issuer: 'uzi',
+          algorithm: 'HS256',
         },
       }),
     }),
