@@ -50,9 +50,7 @@ export class Order extends BaseEntity {
     nullable: false
   })
   paymentType: PaymentType;
-
-  @Column()
-  stockCount: number;
+ 
 
   @Column('decimal',{precision:9,scale:2,nullable:true})
   price: number;

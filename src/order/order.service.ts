@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { randomUUID } from 'crypto';
 import { CreateOrderDto, UpdateOrderDto } from 'src/lib/dto';
 import { Order, Product, User } from 'src/lib/entities';
+import { OrderState } from 'src/lib/enum';
 import { OrderNotFoundException } from 'src/lib/exception';
 import { Repository } from 'typeorm';
 
@@ -17,6 +18,7 @@ export class OrderService {
         order.user = new User({ id: data.userId });
         order.product = new Product({ id: data.productId });
         order.stock = data.stock;
+        order.orderState = OrderState.CREATED;
         order.orderNumber = randomUUID();
         try {
             const result = await this.orderRepository.save(order);
@@ -26,10 +28,10 @@ export class OrderService {
         }
 
     }
-    async update(data: UpdateOrderDto) {
+    async update(id:string ,data: UpdateOrderDto) {
         const order = await this.orderRepository.findOne({
             where: {
-                id: data.id,
+                id
             }
         })
         if (order) {
@@ -53,4 +55,12 @@ export class OrderService {
         });
         return result;
     }
+    async all() {
+        return await this.orderRepository.find();;
+    }
+    async delete(id: string) {
+        return await this.orderRepository.softDelete(id);
+
+    }
+
 }
