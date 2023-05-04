@@ -7,13 +7,15 @@ import { typeOrmAsyncConfig } from './lib/config';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { MenuModule } from './menu/menu.module';
+import { PlaceModule } from './place/place.module';
 
 @Module({
   imports: [UserModule,
     TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     ProductModule,
     OrderModule,
-    MenuModule,],
+    MenuModule,
+    PlaceModule,],
   controllers: [AppController],
   providers: [AppService],
 })
