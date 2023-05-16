@@ -19,13 +19,24 @@ export class UserService  {
         private readonly jwtService: JwtService) { }
 
     async create(createUserDto: CreateUserDto) {
-        const user = new User();
-        user.email = createUserDto.email;
-        user.fullName = createUserDto.fullName;
-        user.password = await hash(createUserDto.password, 10);
-        user.image = createUserDto.image;
-        const result = await this.userRepository.save(user);
-        return result;
+        const findUser = this.userRepository.findOne({
+            where:{
+                email: createUserDto.email,
+            }
+        })
+        if (isDefined(findUser)){
+            //Exception fırlat
+
+        }else{
+            const user = new User();
+            user.email = createUserDto.email;
+            user.fullName = createUserDto.fullName;
+            user.password = await hash(createUserDto.password, 10);
+            user.image = createUserDto.image;
+            const result = await this.userRepository.save(user);
+            return result;
+
+        }
     }
     changePassword(user: User, updatePasswordRequest: UpdatePasswordRequest) {
         updatePasswordRequest.user = user;
