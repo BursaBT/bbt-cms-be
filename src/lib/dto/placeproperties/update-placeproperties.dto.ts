@@ -14,9 +14,9 @@ export class UpdatePlacePropertiesDto extends  CreatePlacePropertiesDto{
 
   @IsNotEmpty()
   @ApiProperty({
-    description:'Price',
+    description:'propertyId, Property Selection',
     example:{smoke:true,crowded:true,speedInternet:true},
   })
-  properties: object;
+  propertyId: string;
 
 }

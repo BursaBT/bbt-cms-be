@@ -9,7 +9,7 @@ import {
     ValidationPipe,
 } from '@nestjs/common';
 import { PlacePropertiesService } from './placeproperties.service';
-import { CreatePlacePropertiesDto, UpdatePlacePropertiesDto } from 'src/lib/dto';
+import { CreatePlacePropertiesDto, UpdatePlacePropertiesDto, CreatePropertiesDto, UpdatePropertiesDto } from 'src/lib/dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Place Properties Services')
@@ -17,29 +17,48 @@ import { ApiTags } from '@nestjs/swagger';
 export class PlacePropertiesController {
     constructor(private readonly placePropertiesService: PlacePropertiesService) { }
 
-    @Post()
-    async create(@Body(ValidationPipe) CreatePlaceProperties: CreatePlacePropertiesDto) {
-        return await this.placePropertiesService.create(CreatePlaceProperties);
+    @Post('placeproperties')
+    async create(@Body(ValidationPipe) PlaceProperties: CreatePlacePropertiesDto) {
+        return await this.placePropertiesService.create(PlaceProperties);
     }
-    @Patch(':id')
+    @Patch('placeproperties/:id')
     async update(
         @Param('id') id: string,
-        @Body(ValidationPipe) CreatePlacePropertiesDto: UpdatePlacePropertiesDto
+        @Body(ValidationPipe) PlaceProperties: UpdatePlacePropertiesDto
     ) {
-        return await this.placePropertiesService.update(id, CreatePlacePropertiesDto);
+        return await this.placePropertiesService.update(id, PlaceProperties);
     }
 
-    @Delete(':id')
+    @Delete('placeproperties/:id')
     async delete(@Param('id') id: string) {
         return await this.placePropertiesService.delete(id);
     }
 
-    @Get()
-    async getFilter() {
-        return await this.placePropertiesService.getFilter('');
-    }
-    @Get('/:placePropertiesId')
+    @Get('placeproperties/:placePropertiesId')
     async getFindById(@Param('placePropertiesId') placePropertiesId: string) {
         return await this.placePropertiesService.getById(placePropertiesId);
+    }
+
+    
+    @Post('properties')
+    async propertiesCreate(@Body(ValidationPipe) CreateProperties: CreatePropertiesDto) {
+        return await this.placePropertiesService.createProperties(CreateProperties);
+    }
+    @Patch('properties/:id')
+    async propertiesUpdate(
+        @Param('id') id: string,
+        @Body(ValidationPipe) Properties: UpdatePropertiesDto
+    ) {
+        return await this.placePropertiesService.updateProperties(id, Properties);
+    }
+
+    @Delete('properties/:id')
+    async deleteProperties(@Param('id') id: string) {
+        return await this.placePropertiesService.deleteProperties(id);
+    }
+
+    @Get('properties/:PropertiesId')
+    async getFindByIdProperties(@Param('PropertiesId') PropertiesId: string) {
+        return await this.placePropertiesService.getById(PropertiesId);
     }
 }

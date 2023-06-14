@@ -1,7 +1,9 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+import {CreatePropertiesDto} from "./create-properties.dto";
 import {ApiProperty} from "@nestjs/swagger";
 
-export class CreatePlacePropertiesDto {
+export class UpdatePropertiesDto extends  CreatePropertiesDto{
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
@@ -12,8 +14,9 @@ export class CreatePlacePropertiesDto {
 
   @IsNotEmpty()
   @ApiProperty({
-    description:'Price',
+    description:'propertyId, Property Selection',
     example:{smoke:true,crowded:true,speedInternet:true},
   })
   propertyId: string;
+
 }

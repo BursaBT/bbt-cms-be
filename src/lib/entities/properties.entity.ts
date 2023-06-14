@@ -2,12 +2,15 @@ import { BaseEntity } from './base.entity';
 import {Column, Entity} from "typeorm";
 
 @Entity()
-export class PlaceProperties extends BaseEntity {
+export class Properties extends BaseEntity {
 
   @Column()
-  placeId: string;
+  id: string;
 
   @Column()
-  propertyId: string;
+  key: string;
+
+  @Column()
+  value: string;
 
 }
