@@ -3,20 +3,18 @@ import {CreatePropertiesDto} from "./create-properties.dto";
 import {ApiProperty} from "@nestjs/swagger";
 
 export class UpdatePropertiesDto extends  CreatePropertiesDto{
-
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description:'Place Id',
-    example:'1'
+    description:'Key',
+    example:'smoke'
   })
-  placeId: string;
+  key: string;
 
   @IsNotEmpty()
   @ApiProperty({
-    description:'propertyId, Property Selection',
-    example:{smoke:true,crowded:true,speedInternet:true},
+    description:'Value',
+    example:'false',
   })
-  propertyId: string;
-
+  value: string;
 }

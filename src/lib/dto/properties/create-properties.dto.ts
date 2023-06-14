@@ -13,7 +13,7 @@ export class CreatePropertiesDto {
   @IsNotEmpty()
   @ApiProperty({
     description:'Value',
-    example:'true||false',
+    example:'true',
   })
   value: string;
 }

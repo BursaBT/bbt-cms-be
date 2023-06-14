@@ -13,7 +13,7 @@ export class CreatePlacePropertiesDto {
   @IsNotEmpty()
   @ApiProperty({
     description:'Price',
-    example:{smoke:true,crowded:true,speedInternet:true},
+    example:"1",
   })
   propertyId: string;
 }
