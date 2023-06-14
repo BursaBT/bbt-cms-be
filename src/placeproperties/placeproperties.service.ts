@@ -13,7 +13,7 @@ export class PlacePropertiesService {
 
     constructor(
         @InjectRepository(PlaceProperties)
-        private readonly productRepository: Repository<PlaceProperties>
+        private readonly placePropertiesRepository: Repository<PlaceProperties>
     ) { }
 
     async create(data: CreatePlacePropertiesDto) {
@@ -21,33 +21,33 @@ export class PlacePropertiesService {
             const placeproperties = new PlaceProperties();
             placeproperties.placeId = data.placeId;
             placeproperties.properties = data.properties;
-            return await this.productRepository.save(placeproperties);
+            return await this.placePropertiesRepository.save(placeproperties);
         } catch (e) {
             return e;
         }
     }
     async update(id:string, data: UpdatePlacePropertiesDto) {
-        const placeproperties = await this.productRepository.findOne({ where: { id } });
+        const placeproperties = await this.placePropertiesRepository.findOne({ where: { id } });
         if (isDefined(placeproperties)){
             placeproperties.placeId = data.placeId;
             placeproperties.properties = data.properties;
-            return await this.productRepository.save(placeproperties);
+            return await this.placePropertiesRepository.save(placeproperties);
         }
         throw new ProductNotFoundException(data.placeId);
         
     }
     async delete(id: string) {
-        return await this.productRepository.softDelete(id);
+        return await this.placePropertiesRepository.softDelete(id);
     }
     async getById(id: string) {
-        return await this.productRepository.findOne({
+        return await this.placePropertiesRepository.findOne({
             where: {
                 id
             }
         });
     }
     async getFilter(filter: string) {
-        return await this.productRepository.find();
+        return await this.placePropertiesRepository.find();
     } 
 
 }
