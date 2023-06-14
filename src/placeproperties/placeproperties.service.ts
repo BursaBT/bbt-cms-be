@@ -26,9 +26,9 @@ export class PlacePropertiesService {
             return e;
         }
     }
-    async update(id:string, data: UpdatePlacePropertiesDto) {
+    async update(id: string, data: UpdatePlacePropertiesDto) {
         const placeproperties = await this.placePropertiesRepository.findOne({ where: { id } });
-        if (isDefined(placeproperties)){
+        if (isDefined(placeproperties)) {
             placeproperties.placeId = data.placeId;
             placeproperties.propertyId = data.propertyId;
             return await this.placePropertiesRepository.save(placeproperties);
@@ -55,21 +55,18 @@ export class PlacePropertiesService {
             return e;
         }
     }
-    async updateProperties(id:string, data: UpdatePropertiesDto) {
+    async updateProperties(id: string, data: UpdatePropertiesDto) {
         const properties = await this.propertiesRepository.findOne({ where: { id } });
-        if (isDefined(properties)){
+        if (isDefined(properties)) {
             properties.key = data.key;
             properties.value = data.value;
             return await this.propertiesRepository.save(properties);
         }
         throw new PropertiesNotFoundException(data.key);
     }
-
     async deleteProperties(id: string) {
         return await this.propertiesRepository.softDelete(id);
     }
-
-    
     async getByIdProperties(id: string) {
         return await this.placePropertiesRepository.findOne({
             where: {
@@ -77,6 +74,4 @@ export class PlacePropertiesService {
             }
         });
     }
-    
-
 }
