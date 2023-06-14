@@ -3,7 +3,7 @@ import {
   TypeOrmModuleAsyncOptions,
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
-import {Order, Product, User} from "../entities";
+import {Order, Product, User, PlaceProperties, Properties} from "../entities";
 
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   imports: [ConfigModule],
@@ -16,7 +16,7 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
       username: process.env.MYSQL_USER,
       database: process.env.MYSQL_DATABASE,
       password: process.env.MYSQL_PASSWORD,
-      entities: [ User, Order, Product ],
+      entities: [ User, Order, Product, PlaceProperties, Properties ],
       migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
       extra: {
         charset: 'utf8mb4',

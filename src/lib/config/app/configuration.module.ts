@@ -16,9 +16,9 @@ import configuration from "./configuration";
       validationSchema: Joi.object({
         JWT_SECRET: Joi.string().required(),
         JWT_EXPIRES: Joi.string().required(),
-        MYSQL_ROOT_PASSWORD: Joi.string().required(),
+        MYSQL_ROOT_PASSWORD: Joi.string().optional().allow(''),
         MYSQL_USER: Joi.string().required(),
-        MYSQL_PASSWORD: Joi.string().required(),
+        MYSQL_PASSWORD: Joi.string().optional().allow(''),
         MYSQL_DATABASE: Joi.string().required(),
         MYSQL_HOST: Joi.string().required(),
         MONGO_USERNAME: Joi.string().required(),
