@@ -12,7 +12,7 @@ import { PlacePropertiesService } from './placeproperties.service';
 import { CreatePlacePropertiesDto, UpdatePlacePropertiesDto } from 'src/lib/dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Product Services')
+@ApiTags('Place Properties Services')
 @Controller('product')
 export class PlacePropertiesController {
     constructor(private readonly placePropertiesService: PlacePropertiesService) { }
