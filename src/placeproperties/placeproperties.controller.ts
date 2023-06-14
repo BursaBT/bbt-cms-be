@@ -38,8 +38,6 @@ export class PlacePropertiesController {
     async getFindById(@Param('placePropertiesId') placePropertiesId: string) {
         return await this.placePropertiesService.getById(placePropertiesId);
     }
-
-    
     @Post('properties')
     async propertiesCreate(@Body(ValidationPipe) CreateProperties: CreatePropertiesDto) {
         return await this.placePropertiesService.createProperties(CreateProperties);
